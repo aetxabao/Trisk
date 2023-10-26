@@ -78,7 +78,45 @@ public class Mapa {
      */
     public void setJugador(int fila, int columna, Jugador jugador) {
         // TODO: 61 setJugador de la clase Mapa.
-
+        int numCelda = getNumCelda(fila, columna);
+        switch (numCelda) {
+            case 1:
+                celda11.setJugador(jugador);
+                jugador.setCelda(celda11);
+                break;
+            case 2:
+                celda12.setJugador(jugador);
+                jugador.setCelda(celda12);
+                break;
+            case 3:
+                celda13.setJugador(jugador);
+                jugador.setCelda(celda13);
+                break;
+            case 4:
+                celda21.setJugador(jugador);
+                jugador.setCelda(celda21);
+                break;
+            case 5:
+                celda22.setJugador(jugador);
+                jugador.setCelda(celda22);
+                break;
+            case 6:
+                celda23.setJugador(jugador);
+                jugador.setCelda(celda23);
+                break;
+            case 7:
+                celda31.setJugador(jugador);
+                jugador.setCelda(celda31);
+                break;
+            case 8:
+                celda32.setJugador(jugador);
+                jugador.setCelda(celda32);
+                break;
+            case 9:
+                celda33.setJugador(jugador);
+                jugador.setCelda(celda33);
+                break;
+        }
     }
 
     /**

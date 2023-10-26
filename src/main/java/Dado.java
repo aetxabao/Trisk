@@ -8,7 +8,8 @@ public class Dado {
 
     // region Atributos
     // TODO: 11 Atributos la clase Dado.
-
+    /** Valor del dado */
+    private int valor;
     // endregion
 
     /**
@@ -17,7 +18,7 @@ public class Dado {
      */
     public Dado() {
         // TODO: 12 Constructor la clase Dado.
-
+        this.valor = (int) (Math.random() * 6) + 1;
     }
 
     /**
@@ -26,7 +27,7 @@ public class Dado {
      */
     public int getValor() {
         // TODO: 13 getValor de la clase Dado.
-        return 0;
+        return this.valor;
     }
 
     /**
@@ -34,7 +35,7 @@ public class Dado {
      */
     public void tirar() {
         // TODO: 14 tirar de la clase Dado.
-
+        this.valor = (int) (Math.random() * 6) + 1;
     }
 
 }

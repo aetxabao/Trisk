@@ -8,7 +8,14 @@ public class Jugador {
 
     // region Atributos
     // TODO: 41 Atributos de la clase Jugador.
-
+    /** Símbolo que representa al jugador en el tablero. */
+    private char simbolo;
+    /** Cantidad de vidas del jugador. */
+    private int vida;
+    /** Celda en la que se encuentra el jugador. */
+    private Celda celda;
+    /** Estadísticas del jugador. */
+    private Estadisticas estadisticas;
     // endregion
 
     /**
@@ -18,33 +25,31 @@ public class Jugador {
      */
     public Jugador(char simbolo, int vida) {
         // TODO: 42 Constructor de la clase Jugador.
-
+        this.simbolo = simbolo;
+        this.vida = vida;
+        this.celda = null;
+        this.estadisticas = new Estadisticas();
     }
 
     // region Getters y setters
     public char getSimbolo() {
-
-        return ' ';
+        return simbolo;
     }
 
     public int getVida() {
-
-        return 0;
+        return vida;
     }
 
     public Estadisticas getEstadisticas() {
-
-        return null;
+        return estadisticas;
     }
 
     public Celda getCelda() {
-
-        return null;
+        return celda;
     }
 
     public void setCelda(Celda celda) {
-
-
+        this.celda = celda;
     }
     // endregion
 
@@ -54,7 +59,7 @@ public class Jugador {
      */
     public void descontarVidas(int cuantas) {
         // TODO: 43 descontarVidas de la clase Jugador.
-
+        vida -= cuantas;
     }
 
     /**
@@ -68,7 +73,17 @@ public class Jugador {
      */
     public boolean avanzar(int orientacion) {
         // TODO: 44 avanzar de la clase Jugador.
-
+        if (celda.hayJugador(orientacion)) {
+            return false;
+        }
+        Celda vecino = celda.getVecino(orientacion);
+        if (vecino == null) {
+            return false;
+        }
+        celda.setJugador(null);
+        vecino.setJugador(this);
+        celda = vecino;
+        estadisticas.registrarDesplazamiento();
         return true;
     }
 
@@ -85,6 +100,29 @@ public class Jugador {
      */
     public boolean atacar(int orientacion) {
         // TODO: 45 atacar de la clase Jugador.
+        if (!celda.hayJugador(orientacion)) {
+            return false;
+        }
+        Celda vecino = celda.getVecino(orientacion);
+        if (vecino == null) {
+            return false;
+        }
+        Jugador jugadorVecino = vecino.getJugador();
+
+        Tirada tiradaJugador = new Tirada(3);
+        Tirada tiradaVecino = new Tirada(2);
+
+        int perdidasJugador = tiradaJugador.perdidas(tiradaVecino);
+        int perdidasVecino = 2 - perdidasJugador;
+
+        this.descontarVidas(perdidasJugador);
+        jugadorVecino.descontarVidas(perdidasVecino);
+
+        estadisticas.registrarAtaque();
+        estadisticas.sumaPuntosMedAtaque(tiradaJugador.getValorMedio());
+
+        jugadorVecino.getEstadisticas().registrarDefensa();
+        jugadorVecino.getEstadisticas().sumaPuntosMaxDefensa(tiradaVecino.getValorMaximo());
 
         return true;
     }

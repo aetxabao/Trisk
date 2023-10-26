@@ -10,12 +10,24 @@ public class Celda {
 
     // region Constantes
     // TODO: 51 Constantes de la clase Celda.
-
+    private final int NORTE = 1;
+    private final int ESTE = 2;
+    private final int SUR = 3;
+    private final int OESTE = 4;
     // endregion
 
     // region Atributos
     // TODO: 52 Atributos de la clase Celda.
-
+    /** Celda vecina al norte. */
+    private Celda vecino1;
+    /** Celda vecina al este. */
+    private Celda vecino2;
+    /** Celda vecina al sur. */
+    private Celda vecino3;
+    /** Celda vecina al oeste. */
+    private Celda vecino4;
+    /** Jugador que se encuentra en la celda o null si no hay ninguno. */
+    private Jugador jugador;
     // endregion
 
 
@@ -23,14 +35,12 @@ public class Celda {
     // TODO: 53 setJugador y getJugador de la clase Celda.
     /** Método que fija el jugador en la celda. */
     public void setJugador(Jugador jugador) {
-
-
+        this.jugador = jugador;
     }
 
     /** Método que devuelve el jugador que está en la celda. */
     public Jugador getJugador() {
-
-        return null;
+        return jugador;
     }
 
     /**
@@ -40,7 +50,20 @@ public class Celda {
      */
     public void setVecino(int orientacion, Celda vecino) {
         // TODO: 54 setVecino de la clase Celda.
-
+        switch (orientacion){
+            case NORTE:
+                vecino1 = vecino;
+                break;
+            case ESTE:
+                vecino2 = vecino;
+                break;
+            case SUR:
+                vecino3 = vecino;
+                break;
+            case OESTE:
+                vecino4 = vecino;
+                break;
+        }
     }
 
     /**
@@ -50,7 +73,16 @@ public class Celda {
      */
     public Celda getVecino(int orientacion) {
         // TODO: 55 getVecino de la clase Celda.
-
+        switch (orientacion){
+            case NORTE:
+                return vecino1;
+            case ESTE:
+                return vecino2;
+            case SUR:
+                return vecino3;
+            case OESTE:
+                return vecino4;
+        }
         return null;
     }
 
@@ -63,8 +95,7 @@ public class Celda {
      */
     public boolean existeVecino(int orientacion) {
         // TODO: 56 existeVecino de la clase Celda.
-
-        return true;
+        return getVecino(orientacion) != null;
     }
 
     /**
@@ -73,8 +104,7 @@ public class Celda {
      */
     public boolean hayJugador() {
         // TODO: 57 hayJugador 1 de la clase Celda.
-
-        return true;
+        return jugador != null;
     }
 
     /**
@@ -84,8 +114,11 @@ public class Celda {
      */
     public boolean hayJugador(int orientacion) {
         // TODO: 58 hayJugador 2 de la clase Celda.
-
-        return true;
+        Celda vecino = getVecino(orientacion);
+        if (vecino != null) {
+            return vecino.hayJugador();
+        }
+        return false;
     }
 
     /**
@@ -98,8 +131,14 @@ public class Celda {
      * @return Representación textual de la celda ej. "   ", " X0", " X1", " X2", ..., "X10", "X11", "X12", ...
      */
     public String toString() {
-
-        return "";
+        // TODO: 59 toString de la clase Celda.
+        if (jugador == null) {
+            return "   ";
+        }
+        if (jugador.getVida() < 10) {
+            return " " + jugador.getSimbolo() + jugador.getVida();
+        }
+        return "" + jugador.getSimbolo() + jugador.getVida();
     }
 
 }

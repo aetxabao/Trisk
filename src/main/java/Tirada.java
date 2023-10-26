@@ -18,7 +18,14 @@ public class Tirada {
 
     // region Atributos
     // TODO: 21 Atributos de la clase Tirada.
-
+    /** Primer valor que será el mayor. */
+    private int valor1;
+    /** Segundo valor que será el siguiente mayor. */
+    private int valor2;
+    /** Tercer valor que será el menor o cero si la tirada se realiza con dos dados. */
+    private int valor3;
+    /** Número de dados de la tirada. Sólo se considera como valores posibles dos o tres. */
+    private int numDados;
     // endregion
 
     /**
@@ -27,7 +34,20 @@ public class Tirada {
      */
     public Tirada(int numDados) {
         // TODO: 22 Constructor de la clase Tirada.
-
+        this.numDados = numDados;
+        Dado dado = new Dado();
+        if (numDados >= 1) {
+            dado.tirar();
+            valor1 = dado.getValor();
+        }
+        if (numDados >= 2) {
+            dado.tirar();
+            valor2 = dado.getValor();
+        }
+        if (numDados == 3) {
+            dado.tirar();
+            valor3 = dado.getValor();
+        }
         ordenarValores();
     }
 
@@ -36,7 +56,21 @@ public class Tirada {
      */
     private void ordenarValores() {
         // TODO: 23 ordenarValores de la clase Tirada.
-
+        if (valor1 < valor2) {
+            int aux = valor1;
+            valor1 = valor2;
+            valor2 = aux;
+        }
+        if (valor2 < valor3) {
+            int aux = valor2;
+            valor2 = valor3;
+            valor3 = aux;
+        }
+        if (valor1 < valor2) {
+            int aux = valor1;
+            valor1 = valor2;
+            valor2 = aux;
+        }
     }
 
     /**
@@ -46,8 +80,13 @@ public class Tirada {
      */
     public int getValor(int indice) {
         // TODO: 24 getValor de la clase Tirada.
-
-        return 0;
+        if (indice == 1) {
+            return valor1;
+        } else if (indice == 2) {
+            return valor2;
+        } else {
+            return valor3;
+        }
     }
 
     /**
@@ -56,8 +95,7 @@ public class Tirada {
      */
     public int getValorMaximo() {
         // TODO: 25 getValorMaximo de la clase Tirada.
-
-        return 0;
+        return valor1;
     }
 
     /**
@@ -66,8 +104,13 @@ public class Tirada {
      */
     public double getValorMedio() {
         // TODO: 26 getValorMedio de la clase Tirada.
-
-        return 0;
+        if (numDados == 1) {
+            return valor1;
+        } else if (numDados == 2) {
+            return (valor1 + valor2) / 2.0;
+        } else {
+            return (valor1 + valor2 + valor3) / 3.0;
+        }
     }
 
     /**
@@ -77,8 +120,15 @@ public class Tirada {
      * @return Número de veces que pierden los dados de la tirada frente a los de la otra tirada: 0, 1 o 2.
      */
     public int perdidas(Tirada otra) {
-
-        return 0;
+        // TODO: 27 perdidas de la clase Tirada.
+        int perdidas = 0;
+        if (valor1 <= otra.getValor(1)) {
+            perdidas++;
+        }
+        if (valor2 <= otra.getValor(2)) {
+            perdidas++;
+        }
+        return perdidas;
     }
 
 }
