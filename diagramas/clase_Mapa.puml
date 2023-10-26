@@ -1,0 +1,20 @@
+@startuml
+class Mapa {
++ Celda celda11
++ Celda celda12
++ Celda celda13
++ Celda celda21
++ Celda celda22
++ Celda celda23
++ Celda celda31
++ Celda celda32
++ Celda celda33
++ <<Create>> Mapa()
+- void instanciarCeldas()
+- void setVecinos()
+- void setCeldasVecinas(Celda,Celda,Celda,Celda,Celda)
++ void setJugador(int,int,Jugador)
+- int getNumCelda(int,int)
++ void pintar()
+}
+@enduml

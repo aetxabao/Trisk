@@ -1,0 +1,17 @@
+@startuml
+class Jugador {
+- char simbolo
+- int vida
+- Celda celda
+- Estadisticas estadisticas
++ <<Create>> Jugador(char,int)
++ char getSimbolo()
++ int getVida()
++ Estadisticas getEstadisticas()
++ Celda getCelda()
++ void setCelda(Celda)
++ void descontarVidas(int)
++ boolean avanzar(int)
++ boolean atacar(int)
+}
+@enduml

@@ -1,0 +1,112 @@
+@startuml
+class Tirada {
+- int valor1
+- int valor2
+- int valor3
+- int numDados
++ <<Create>> Tirada(int)
+- void ordenarValores()
++ int getValor(int)
++ int getValorMaximo()
++ double getValorMedio()
++ int perdidas(Tirada)
+}
+class Dado {
+- int valor
++ <<Create>> Dado()
++ int getValor()
++ void setValor(int)
++ void tirar()
+}
+class DemoJuego {
+- Jugador jugador1
+- Jugador jugador2
+- Jugador jugador3
+- Mapa mapa
++ <<Create>> DemoJuego(char,char,char,int)
+- void setJugadoresEnMapa()
++ void jugar()
++ void pintarEstadisticas()
+}
+class Main {
++ {static} void main(String[])
+}
+class Celda {
+- int NORTE
+- int ESTE
+- int SUR
+- int OESTE
+- Celda vecino1
+- Celda vecino2
+- Celda vecino3
+- Celda vecino4
+- Jugador jugador
++ void setJugador(Jugador)
++ Jugador getJugador()
++ void setVecino(int,Celda)
++ Celda getVecino(int)
++ boolean existeVecino(int)
++ boolean hayJugador()
++ boolean hayJugador(int)
++ String toString()
+}
+class Mapa {
++ Celda celda11
++ Celda celda12
++ Celda celda13
++ Celda celda21
++ Celda celda22
++ Celda celda23
++ Celda celda31
++ Celda celda32
++ Celda celda33
++ <<Create>> Mapa()
+- void instanciarCeldas()
+- void setVecinos()
+- void setCeldasVecinas(Celda,Celda,Celda,Celda,Celda)
++ void setJugador(int,int,Jugador)
+- int getNumCelda(int,int)
++ void pintar()
+}
+class Estadisticas {
+- int cntAtaques
+- int cntDefensas
+- int cntDesplazamientos
+- int sumaPuntosMaxDefensa
+- double sumaPuntosMedAtaque
++ void registrarAtaque()
++ void registrarDefensa()
++ void registrarDesplazamiento()
++ void sumaPuntosMaxDefensa(int)
++ void sumaPuntosMedAtaque(double)
++ double getMediaPuntosMaxDefensa()
++ double getMediaPuntosMedAtaque()
+- double twoDecimals(double)
++ void pintar()
+}
+class Jugador {
+- char simbolo
+- int vida
+- Celda celda
+- Estadisticas estadisticas
++ <<Create>> Jugador(char,int)
++ char getSimbolo()
++ int getVida()
++ Estadisticas getEstadisticas()
++ Celda getCelda()
++ void setCelda(Celda)
++ void descontarVidas(int)
++ boolean avanzar(int)
++ boolean atacar(int)
+}
+Main .right.> DemoJuego
+DemoJuego *-> Jugador
+DemoJuego --> Mapa
+Mapa *-> Celda
+Celda o-> Celda
+Celda -up-> Jugador
+Jugador -right-> Estadisticas
+Jugador ..> Tirada
+Jugador --> Celda
+Tirada .right.> Dado
+@enduml

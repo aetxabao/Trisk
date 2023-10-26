@@ -1,0 +1,14 @@
+@startuml
+class Tirada {
+- int valor1
+- int valor2
+- int valor3
+- int numDados
++ <<Create>> Tirada(int)
+- void ordenarValores()
++ int getValor(int)
++ int getValorMaximo()
++ double getValorMedio()
++ int perdidas(Tirada)
+}
+@enduml

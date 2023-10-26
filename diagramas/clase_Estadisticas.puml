@@ -1,0 +1,18 @@
+@startuml
+class Estadisticas {
+- int cntAtaques
+- int cntDefensas
+- int cntDesplazamientos
+- int sumaPuntosMaxDefensa
+- double sumaPuntosMedAtaque
++ void registrarAtaque()
++ void registrarDefensa()
++ void registrarDesplazamiento()
++ void sumaPuntosMaxDefensa(int)
++ void sumaPuntosMedAtaque(double)
++ double getMediaPuntosMaxDefensa()
++ double getMediaPuntosMedAtaque()
+- double twoDecimals(double)
++ void pintar()
+}
+@enduml

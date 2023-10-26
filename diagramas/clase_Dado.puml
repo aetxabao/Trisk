@@ -1,0 +1,8 @@
+@startuml
+class Dado {
+- int valor
++ <<Create>> Dado()
++ int getValor()
++ void tirar()
+}
+@enduml

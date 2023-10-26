@@ -1,0 +1,21 @@
+@startuml
+class Celda {
+- int NORTE
+- int ESTE
+- int SUR
+- int OESTE
+- Celda vecino1
+- Celda vecino2
+- Celda vecino3
+- Celda vecino4
+- Jugador jugador
++ void setJugador(Jugador)
++ Jugador getJugador()
++ void setVecino(int,Celda)
++ Celda getVecino(int)
++ boolean existeVecino(int)
++ boolean hayJugador()
++ boolean hayJugador(int)
++ String toString()
+}
+@enduml
